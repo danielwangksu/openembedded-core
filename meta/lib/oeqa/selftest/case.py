@@ -163,6 +163,7 @@ to ensure accurate results.")
             for command in self._extra_tear_down_commands:
                 result = runCmd(command, ignore_status=True)
                 if not result.status ==  0:
+                    self.logger.warning(result.output)
                     failed_extra_commands.append(command)
             if failed_extra_commands:
                 self.logger.warning("tearDown commands have failed: %s" % ', '.join(map(str, failed_extra_commands)))
